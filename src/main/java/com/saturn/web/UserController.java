@@ -50,6 +50,15 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("logout")
+	private String logout(HttpSession session){
+		session.removeAttribute("user");
+		
+		
+		System.out.println("Log out!!!!!");
+		return "redirect:/";
+	}
+	
 	@GetMapping("/form")
 	public String form() {
 		return "/user/form";
