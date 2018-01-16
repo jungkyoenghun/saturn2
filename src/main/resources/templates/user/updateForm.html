@@ -64,14 +64,14 @@
         <div class="collapse navbar-collapse" id="navbar-collapse2">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="../index.html">Posts</a></li>
-                {{^user}}
+                {{^sessionedUser}}
                 <li><a href="/users/loginForm" role="button">로그인</a></li>
                 <li><a href="/users/form" role="button">회원가입</a></li>
-                {{/user}}
-                {{#user}}
+                {{/sessionedUser}}
+                {{#sessionedUser}}
                 <li><a href="/users/logout" role="button">로그아웃</a></li>
-                <li><a href="#" role="button">개인정보수정</a></li>
-                {{/user}}
+                <li><a href="/users/{{id}}/form" role="button">개인정보수정</a></li>
+                {{/sessionedUser}}
             </ul>
             </ul>
             </ul>
@@ -84,7 +84,13 @@
    <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default content-main">
               {{#users}}
-          <form name="question" method="get" action="/users">
+          <form name="question" method="post" action="/users/{{id}}" />
+          
+    <!-- put method 사용을 위한 꼼수  -->          
+          
+          <input type="hidden" name="_method" value="put"/>
+          
+          	<inupt type="hidden" name="id" value="{{id}}">
               <div class="form-group">
                   <label for="userId">사용자 아이디</label>
                   <input class="form-control" id="userId" name="userId" placeholder="User ID" value="{{userId}}">
@@ -101,7 +107,7 @@
                   <label for="email">이메일</label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{email}}">
               </div>
-              <button type="submit" class="btn btn-success clearfix pull-right">회원가입</button>
+              <button type="submit" class="btn btn-success clearfix pull-right">개인정보수정</button>
               <div class="clearfix" />
           </form>
                 {{/users}}
