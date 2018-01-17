@@ -22,8 +22,15 @@ public class User {
 		this.userId = userId;
 	}
 	
-	public Long getId() {
-		return id;
+	
+	public boolean matchId(Long newId){
+	
+		System.out.println("matchId enter!!!!!!!!!!!!!!!!!!!");
+		System.out.println(id);
+		if (newId == null ){
+			return false;
+		}
+		return newId.equals(id);
 	}
 	
 
@@ -31,10 +38,15 @@ public class User {
 		this.password = password;
 	}
 	
-	
-	public String getPassword() {
-		return password;
+	public boolean matchPassword(String newPassword){
+		if (newPassword == null){
+			return false;
+		}
+		
+		return newPassword.equals(password);
 	}
+	
+
 
 	public void setUsername(String username) {
 		this.username = username;
